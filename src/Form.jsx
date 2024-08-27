@@ -1,36 +1,88 @@
-import React from 'react';
 import { useState } from 'react';
 
 function Form() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [form, setForm] = useState({
+    email: '',
+    password: '',
+    role: 'user',
+    gender: 'female',
+    rule: false,
+  });
 
-  const loginHandler = () => {
-    console.log(email);
-    console.log(password);
+  const submitHandler = (event) => {
+    event.preventDefault();
+    console.log(form);
   };
-  const userHandler = (event) => {
-    setEmail(event.target.value);
-  };
-  const passwordHandler = (event) => {
-    setPassword(event.target.value);
+
+  const changeHandler = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+
+    if (name === 'rule') {
+      setForm((form) => ({ ...form, [name]: !form.rule }));
+    } else {
+      setForm((form) => ({ ...form, [name]: value }));
+    }
   };
 
   return (
     <div>
-      <input
-        type="text"
-        placeholder="Your Email"
-        value={email}
-        onChange={userHandler}
-      />
-      <input
-        type="password"
-        placeholder="Your Password"
-        value={password}
-        onChange={passwordHandler}
-      />
-      <button onClick={loginHandler}>Login</button>
+      <form onSubmit={submitHandler}>
+        <select value={form.role} name="role" onChange={changeHandler}>
+          <option value="admin">Admin</option>
+          <option value="user">User</option>
+          <option value="writer">Writer</option>
+        </select>
+        <input
+          type="text"
+          placeholder="Your Email"
+          value={form.email}
+          name="email"
+          onChange={changeHandler}
+        />
+        <input
+          type="password"
+          placeholder="Your Password"
+          value={form.password}
+          name="password"
+          onChange={changeHandler}
+        />
+
+        <div>
+          <label htmlFor="male">Male</label>
+          <input
+            type="radio"
+            name="gender"
+            id="male"
+            value="male"
+            onChange={changeHandler}
+          />
+          <label htmlFor="female">female</label>
+          <input
+            type="radio"
+            name="gender"
+            id="female"
+            value="female"
+            onChange={changeHandler}
+            checked={form.gender === 'female'}
+          />
+          <label htmlFor="other">Other</label>
+          <input
+            type="radio"
+            name="gender"
+            id="other"
+            value="other"
+            onChange={changeHandler}
+          />
+          <input
+            type="checkbox"
+            name="rule"
+            checked={form.rule}
+            onChange={changeHandler}
+          />
+          <button type="submit">Login</button>
+        </div>
+      </form>
     </div>
   );
 }
