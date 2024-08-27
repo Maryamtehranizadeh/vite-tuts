@@ -1,7 +1,4 @@
-
-
-function CourseCard({data:{name, description}}) {
-    
+function CourseCard({ data: { name, description } }) {
   return (
     <div>
       <li>

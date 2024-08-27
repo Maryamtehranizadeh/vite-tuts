@@ -9,14 +9,13 @@ function CourseList() {
   ];
   return (
     <div>
-        <h3>Course List:</h3>
-        <ul>
-            {courses.map((course) => 
-            <CourseCard key={course.id} data={course} />
-            )}
-        </ul>
+      <h3>Course List:</h3>
+      <ul>
+        {courses.map((course) => (
+          <CourseCard key={course.id} data={course} />
+        ))}
+      </ul>
     </div>
-    
   );
 }
 
