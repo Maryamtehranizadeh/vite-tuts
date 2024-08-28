@@ -3,6 +3,7 @@ import Banner from './Banner';
 import Counter from './counter';
 import Test from './Test';
 import Form from './Form';
+import './global.css';
 
 function App() {
   return (

@@ -1,6 +1,9 @@
+import { useState } from 'react';
 import CourseCard from './CourseCard';
+import styles from './CourseList.module.css';
 
 function CourseList() {
+  const [selected, setSelected] = useState(false);
   const courses = [
     { id: 1, name: 'React', description: 'This is React course' },
     { id: 2, name: 'JS', description: 'This is JS course' },
@@ -9,7 +12,10 @@ function CourseList() {
   ];
   return (
     <div>
-      <h3>Course List:</h3>
+      <h3 className={selected ? styles.selected : styles.container}>
+        Course List:
+      </h3>
+      <button onClick={() => setSelected((s) => !s)}>Select it!</button>
       <ul>
         {courses.map((course) => (
           <CourseCard key={course.id} data={course} />

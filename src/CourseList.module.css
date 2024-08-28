@@ -1,0 +1,7 @@
+.container {
+  background-color: rgb(235, 217, 193);
+}
+
+.selected {
+  background-color: pink;
+}
